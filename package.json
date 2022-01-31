@@ -1,0 +1,15 @@
+{
+  "name": "prototype-chat",
+  "version": "1.0.0",
+  "description": "This is a prototype for a hybrid chat system that i was working on for another project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
