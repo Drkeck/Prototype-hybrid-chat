@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Conversation } = require('.');
 
 const { Schema } = mongoose;
 
@@ -13,7 +14,7 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    // messages: []
+    conversations: [Conversation.schema]
 });
 
 const User = mongoose.model('User', userSchema);

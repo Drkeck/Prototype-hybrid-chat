@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const { Conversation } = require('.');
+const { Conversation, User } = require('.');
 
 const { Schema } = mongoose
 
 const messageSchema = new Schema({
-    conversation: [Conversation.schema],
+    conversation: Conversation.schema,
+    from: User.schema,
     messageBody: {
         type: String,
         required: true
@@ -13,5 +14,8 @@ const messageSchema = new Schema({
         type: Date,
         default: Date.now
     },
+});
 
-})
+const Messages = mongoose.model('Messages', messageSchema);
+
+module.exports = Messages
