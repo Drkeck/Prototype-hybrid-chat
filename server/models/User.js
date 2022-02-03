@@ -14,7 +14,10 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    conversations: [Conversation.schema]
+    conversations: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Conversation'
+    }]
 });
 
 const User = mongoose.model('User', userSchema);

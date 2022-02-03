@@ -4,8 +4,14 @@ const { Conversation, User } = require('.');
 const { Schema } = mongoose
 
 const messageSchema = new Schema({
-    conversation: Conversation.schema,
-    from: User.schema,
+    conversation: {
+        type: Schema.Types.ObjectId,
+        ref: 'Conversation'
+    },
+    from: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     messageBody: {
         type: String,
         required: true
