@@ -17,7 +17,7 @@ const UserController = {
             })
     },
 
-    creatUser({body}, res) {
+    createUser({body}, res) {
         User.create(body)
             .then(dbUsersData => res.json(dbUsersData))
             .catch(err => {
