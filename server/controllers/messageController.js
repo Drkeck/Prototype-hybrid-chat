@@ -1,4 +1,4 @@
-const { Messages } = require('../models');
+const { Messages, Conversation } = require('../models');
 
 const MessageController = {
     getAllMessages(req, res) {
