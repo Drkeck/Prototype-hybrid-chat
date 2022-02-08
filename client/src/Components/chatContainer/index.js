@@ -5,10 +5,9 @@ import ChatInput from "../chatInput"
 function ChatContainer() {
 
     return(
-        <div className="w-3/5 mx-auto mt-8 bg-white shadow-xl">
+        <div className="w-3/5 mx-auto mt-8 bg-white shadow-inner rounded-2xl bg-silver">
             <ChatFeed />
             <ChatInput />
-            <p>i am the chat container</p>
         </div>
     )
 }
