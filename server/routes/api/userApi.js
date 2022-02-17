@@ -4,9 +4,8 @@ const { getAllUsers, createUser, deleteUser, getUserById, startConversation } = 
 router
     .route('/')
     .get(getAllUsers)
-    .post(createUser)
-    .put(startConversation)
-
+    .post(createUser);
+    
 router
     .route('/:id')
     .get(getUserById)

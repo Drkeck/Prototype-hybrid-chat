@@ -37,12 +37,6 @@ const UserController = {
                 res.json(dbUsersData)
             })
             .catch(err => console.log(err))
-    },
-
-    startConversation({body}, res) {
-        User.findByIdAndUpdate(body.userId, {$push: {conversations: {user1: body.userId, user2: body.targetId}}}, {new: true})
-            .then(dbUsersData => res.json(dbUsersData))
-            .catch(err => console.log(err));
     }
 }
 

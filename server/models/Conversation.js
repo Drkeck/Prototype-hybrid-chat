@@ -1,21 +1,18 @@
 const mongoose = require('mongoose');
+const messageSchema = require('./message');
 
 const { Schema } = mongoose;
 
 const conversationSchema = new Schema({
     newMessage: Boolean,
-    user1: {
+    users: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
-    user2: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    messages:[{
-        type: Schema.Types.ObjectId,
-        ref: "Messages"
-    }]
+    }],
+    messages:[messageSchema],
+    updateDate: { type: Date, default: Date.now }
 })
 
-module.exports = conversationSchema;
+const Conversation = mongoose.model('Conversations', conversationSchema)
+
+module.exports = Conversation;
