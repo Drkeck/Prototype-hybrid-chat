@@ -11,6 +11,10 @@ const messageSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    sender: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 module.exports = messageSchema

@@ -2,8 +2,8 @@ const { Conversation, User } = require('../models');
 
 const MessageController = {
 
-    getAllMessages({_id}, res) {
-        Conversation.findById(_id)
+    getAllMessages({params}, res) {
+        Conversation.findById(params.id)
             .then(dbMessageData => res.json(dbMessageData))
             .catch(err => console.log(err))
     },
