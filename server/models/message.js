@@ -4,10 +4,6 @@ const { Conversation, User } = require('.');
 const { Schema } = mongoose
 
 const messageSchema = new Schema({
-    conversation: {
-        type: Schema.Types.ObjectId,
-        ref: 'Conversation'
-    },
     from: {
         type: Schema.Types.ObjectId,
         ref: 'User'

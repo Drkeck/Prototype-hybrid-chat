@@ -3,6 +3,7 @@ const { User, Conversation } = require('../models');
 const UserController = {
     getAllUsers(req,res) {
         User.find({})
+            .populate('conversations')
             .then(dbUsersData => res.json(dbUsersData))
             .catch(err => {
                 console.log(err);
@@ -41,8 +42,8 @@ const UserController = {
     startConversation({body}, res) {
         Conversation.create(body)
         .then(dbConvoData => {
-            User.findOneAndUpdate(body.targetId, { $addToSet: { conversations: body._id }})
-            User.findByIdAndUpdate(body.userId, { $addToSet: { conversations: body._id }})
+            User.findOneAndUpdate(body.targetId, { $addToSet: { conversations: dbConvoData._id }})
+            User.findByIdAndUpdate(body.userId, { $addToSet: { conversations: dbConvoData._id }})
             res.json(dbConvoData);
             return
         })
