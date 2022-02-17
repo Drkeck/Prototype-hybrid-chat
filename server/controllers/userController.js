@@ -40,15 +40,9 @@ const UserController = {
     },
 
     startConversation({body}, res) {
-        Conversation.create(body)
-        .then(dbConvoData => {
-            User.findOneAndUpdate(body.targetId, { $addToSet: { conversations: dbConvoData._id }})
-            User.findByIdAndUpdate(body.userId, { $addToSet: { conversations: dbConvoData._id }})
-            res.json(dbConvoData);
-            return
-        })
-        .catch(err => console.log(err))
-
+        User.findByIdAndUpdate(body.userId, {$push: {conversations: {user1: body.userId, user2: body.targetId}}}, {new: true})
+            .then(dbUsersData => res.json(dbUsersData))
+            .catch(err => console.log(err));
     }
 }
 

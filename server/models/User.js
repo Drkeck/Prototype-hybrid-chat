@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const conversationSchema = require('./Conversation');
 // const { Conversation } = require('.');
 
 const { Schema } = mongoose;
@@ -14,10 +15,7 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    conversations: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Conversation'
-    }]
+    conversations: [conversationSchema]
 });
 
 const User = mongoose.model('User', userSchema);
