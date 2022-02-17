@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const conversationSchema = require('./Conversation');
-// const { Conversation } = require('.');
 
 const { Schema } = mongoose;
 

@@ -1,9 +1,15 @@
+const { getAllMessages, createMessage, startConversation } = require('../../controllers/messageController');
+
 const router = require('express').Router();
 
 router
+    .route('/')
+    .post(startConversation)
+
+router
     .route('/:id')
-    // .get()
+    .get(getAllMessages)
     // .post()
-    // .put();
+    .put(createMessage);
 
 module.exports = router
