@@ -14,11 +14,16 @@ const MessageController = {
             .catch(err => console.log(err))
     },
 
-    startConversation({body}, res) {
-        Conversation.create(body)
-            .then(dbMessageData => res.json(dbMessageData))
-            .catch(err => console.log(err));
-        User.findByIdAndUpdate()
+    startConversation: async ({body}, res) => {
+        const convo = await Conversation.create(body)
+
+        await User.findByIdAndUpdate({ _id: body.users[0]._id }, {$addToSet: { conversations: convo._id}})
+            .then(dbMessageData => {
+                console.log(dbMessageData)
+                res.json(convo)}
+                )
+                .catch(err => err)
+        
     }
 }
 
