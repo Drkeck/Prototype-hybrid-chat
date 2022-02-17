@@ -12,17 +12,20 @@ function ChatInput(props) {
         <form
             // Setting up the added stuff like this really makes it more readable even if it makes the tag feel a little fat.
             className="w-full flex justify-around rounded-b-2xl border-t-2 border-dashed border-white h-14 text-lg"
-            onChange={(e) => update({
-                message: e.target.value
-            })}
+            
             onSubmit={(e) => {
                 e.preventDefault()
-                var message = e.target[0].value;
-                console.log(message)
+                console.log(form)
+                update({
+                    message: ""
+                })
                 // For now its just a log so we know the message is being captured properly
                 // There will be another logic bit here to have this message sent and rendered to the chat feed.
-            }}>
-            <input className="w-10/12 m-2 shadow-inner rounded-2xl resize-none px-2 border-none"/>
+            }}
+            >
+            <input className="w-10/12 m-2 shadow-inner rounded-2xl resize-none px-2 border-none" value={form.message} onChange={(e) => update({
+                message: e.target.value
+            })}/>
             <button className="rounded-full bg-purple w-2/12 m-2 text-white hover:text-black hover:bg-white">send</button>
         </form>
     )
