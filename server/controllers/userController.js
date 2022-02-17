@@ -36,6 +36,10 @@ const UserController = {
                 res.json(dbUsersData)
             })
             .catch(err => console.log(err))
+    },
+
+    startConversation({body}, res) {
+        // having a hard time figuring this one out
     }
 }
 

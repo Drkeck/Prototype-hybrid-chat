@@ -1,10 +1,14 @@
 const express = require('express');
+const app = express();
+const httpServer = require("http").createServer(app)
+const options = {}
+const io = require("socket.io")(httpServer, options)
+
 const path = require('path');
 
 const db = require('./config/connection.js')
 
 const PORT = process.env.PORT || 3001;
-const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -15,8 +19,10 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+io.on("connection", socket => {})
+
 db.once('open', () => {
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
 });
