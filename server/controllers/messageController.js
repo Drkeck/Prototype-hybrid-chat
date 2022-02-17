@@ -11,11 +11,6 @@ const MessageController = {
             .then(dbMessageData => res.json(dbMessageData))
             .catch(err => console.log(err))
     },
-    startConversation({body}, res) {
-        Conversation.create(body)
-            .then(dbConversationData => res.json(dbConversationData))
-            .catch(err => console.log(err))
-    }
 }
 
 module.exports = MessageController

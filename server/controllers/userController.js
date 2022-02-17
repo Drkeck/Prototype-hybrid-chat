@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Conversation } = require('../models');
 
 const UserController = {
     getAllUsers(req,res) {
@@ -39,7 +39,15 @@ const UserController = {
     },
 
     startConversation({body}, res) {
-        // having a hard time figuring this one out
+        Conversation.create(body)
+        .then(dbConvoData => {
+            User.findOneAndUpdate(body.targetId, { $addToSet: { conversations: body._id }})
+            User.findByIdAndUpdate(body.userId, { $addToSet: { conversations: body._id }})
+            res.json(dbConvoData);
+            return
+        })
+        .catch(err => console.log(err))
+
     }
 }
 
