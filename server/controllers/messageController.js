@@ -8,9 +8,12 @@ const MessageController = {
             .catch(err => console.log(err))
     },
 
-    createMessage({body}, res) {
-        Conversation.findByIdAndUpdate(body._id, {$push: {messages: {messageBody: body.body, timeSent: Date.now}}})
-            .then(dbMessageData => res.json(dbMessageData))
+    createMessage({params, body}, res) {
+        console.log(params)
+        Conversation.findByIdAndUpdate(params.id, {$push: {messages: {messageBody: body.body}}})
+            .then(dbMessageData => {
+                // console.log(dbMessageData)
+                res.json(dbMessageData)})
             .catch(err => console.log(err))
     },
 

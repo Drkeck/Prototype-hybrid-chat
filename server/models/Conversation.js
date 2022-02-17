@@ -10,7 +10,7 @@ const conversationSchema = new Schema({
         ref: 'User'
     }],
     messages:[messageSchema],
-    updateDate: { type: Date, default: Date.now }
+    updateDate: { type: Date, default: Date.now() }
 })
 
 const Conversation = mongoose.model('Conversations', conversationSchema)
