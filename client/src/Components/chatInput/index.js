@@ -18,6 +18,7 @@ function ChatInput(props) {
             onSubmit={(e) => {
                 e.preventDefault()
                 var message = e.target[0].value;
+                console.log(message)
                 // For now its just a log so we know the message is being captured properly
                 // There will be another logic bit here to have this message sent and rendered to the chat feed.
             }}>
