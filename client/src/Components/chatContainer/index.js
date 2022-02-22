@@ -1,21 +1,17 @@
 import ChatFeed from "../chatFeed"
 import ChatInput from "../chatInput"
 import { useEffect, useState } from "react"
-import { io } from "socket.io-client"
 
 
 function ChatContainer() {
-    const socket = io();
     const [form, updateForm] = useState({ message: "" });
     const [chatLog, updateLog] = useState({})
     useEffect(() => {
-        socket.on("connect", () => {
-            console.log(socket.id)
-        })
+
     })
 
     function sendMessage(info) {
-        socket.broadcast.emit("hello", info)
+
     }
 
     return (
