@@ -19,7 +19,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-io.on("connection", socket => {})
+io.on("connection", socket => {
+    console.log(socket.id)
+})
 
 db.once('open', () => {
     httpServer.listen(PORT, () => {
