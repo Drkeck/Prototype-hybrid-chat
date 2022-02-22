@@ -3,7 +3,8 @@ import {useState} from 'react'
 function ChatInput(props) {
     const {
         form,
-        update
+        update,
+        sendMessage
     } = props
 
     // const [form, updateForm] = useState({message: ""});
@@ -20,7 +21,7 @@ function ChatInput(props) {
                     message: ""
                 })
                 // For now its just a log so we know the message is being captured properly
-                // There will be another logic bit here to have this message sent and rendered to the chat feed.
+                sendMessage(form)
             }}
             >
             <input className="w-10/12 m-2 shadow-inner rounded-2xl resize-none px-2 border-none" value={form.message} onChange={(e) => update({
