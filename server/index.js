@@ -22,10 +22,11 @@ db.once('open', () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
     server.on('connection', socket => {
-        console.log(socket)
+        // console.log(socket)
         socket.send('Hello')
-        socket.on('message', message => {
-            socket.send(`we received this message: ${message}`)
+        socket.on('message', (message, isBinary) => {
+            console.log(message)
+            // socket.send(`we received this message: ${message}`)
         })
     })
 });

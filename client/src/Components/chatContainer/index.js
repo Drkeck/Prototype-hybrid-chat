@@ -20,7 +20,7 @@ function ChatContainer() {
 
     function sendMessage(info) {
         console.log(info)
-        socketRef.current.send(info.message)
+        socketRef.current.send(info)
     }
 
     return (
