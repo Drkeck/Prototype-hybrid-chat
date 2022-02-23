@@ -26,7 +26,7 @@ db.once('open', () => {
         socket.send('Hello')
         socket.on('message', (message, isBinary) => {
             console.log(message)
-            // socket.send(`we received this message: ${message}`)
+            socket.send(`we received this message: ${message}`)
         })
     })
 });
