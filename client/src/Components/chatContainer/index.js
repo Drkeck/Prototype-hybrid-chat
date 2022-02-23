@@ -7,7 +7,11 @@ function ChatContainer() {
     const [form, updateForm] = useState({ message: "" });
     const [chatLog, updateLog] = useState({})
     useEffect(() => {
+        const socket = new WebSocket('ws://localhost:8080');
 
+        socket.onmessage = ({ data }) => {
+            console.log(data, 'from server')
+        }
     })
 
     function sendMessage(info) {

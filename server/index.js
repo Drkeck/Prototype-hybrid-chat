@@ -22,8 +22,8 @@ db.once('open', () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
     server.on('connection', socket => {
-        console.log(socket.id)
-
+        console.log(socket)
+        socket.send('Hello')
         socket.on('message', message => {
             socket.send(`we received this message: ${message}`)
         })
