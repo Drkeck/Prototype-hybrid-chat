@@ -13,11 +13,11 @@ function ChatContainer() {
     useEffect(() => {
         socketRef.current = new WebSocket('ws://localhost:8080');
 
-        socketRef.current.onmessage = (data) => {
-            const newData = Object(data)
-            console.log(newData, '\n - from server')
+        socketRef.current.onmessage = ({data}) => {
+            const newData = JSON.parse(data)
+            console.log(newData.message, `\n from ${newData.from}`)
         }
-    }, [])
+    })
 
     function sendMessage(info) {
         console.log(info)
