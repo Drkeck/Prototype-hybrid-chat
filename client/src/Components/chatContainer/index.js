@@ -1,21 +1,26 @@
 import ChatFeed from "../chatFeed"
 import ChatInput from "../chatInput"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
 function ChatContainer() {
+    
     const [form, updateForm] = useState({ message: "" });
     const [chatLog, updateLog] = useState({})
-    useEffect(() => {
-        const socket = new WebSocket('ws://localhost:8080');
 
-        socket.onmessage = ({ data }) => {
-            console.log(data, 'from server')
+    const socketRef = useRef();
+
+    useEffect(() => {
+        socketRef.current = new WebSocket('ws://localhost:8080');
+
+        socketRef.current.onmessage = ({ data }) => {
+            console.log(data, '\n - from server')
         }
-    })
+    }, [])
 
     function sendMessage(info) {
-
+        console.log(info)
+        socketRef.current.send(info.message)
     }
 
     return (
