@@ -24,9 +24,9 @@ db.once('open', () => {
     server.on('connection', socket => {
         // console.log(socket)
         socket.send(JSON.stringify({message: "hello", from: "server"}))
-        socket.on('message', (message, isBinary) => {
-            console.log(message)
-            socket.send(`we received this message: ${message}`)
+        socket.on('message', (message) => {
+            console.log(message.buffer)
+            socket.send(JSON.stringify({message: "message", from: "you"}))
         })
     })
 });

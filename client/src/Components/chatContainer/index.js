@@ -15,12 +15,11 @@ function ChatContainer() {
 
         socketRef.current.onmessage = ({data}) => {
             const newData = JSON.parse(data)
-            console.log(newData.message, `\n from ${newData.from}`)
+            console.log(newData.message, `from ${newData.from}`)
         }
-    })
+    },[socketRef])
 
     function sendMessage(info) {
-        console.log(info)
         socketRef.current.send(info)
     }
 
