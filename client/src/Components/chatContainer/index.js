@@ -14,13 +14,13 @@ function ChatContainer() {
         socketRef.current = new WebSocket('ws://localhost:8080');
 
         socketRef.current.onmessage = ({data}) => {
-            const newData = JSON.parse(data)
-            console.log(newData.message, `from ${newData.from}`)
+            // const newData = JSON.parse(data)
+            data.text().then(txt => console.log(txt))
         }
     },[socketRef])
 
     function sendMessage(info) {
-        socketRef.current.send(info)
+        socketRef.current.send(info.message)
     }
 
     return (

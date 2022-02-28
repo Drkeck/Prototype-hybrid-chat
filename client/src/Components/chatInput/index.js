@@ -7,8 +7,6 @@ function ChatInput(props) {
         sendMessage
     } = props
 
-    // const [form, updateForm] = useState({message: ""});
-
     return(
         <form
             // Setting up the added stuff like this really makes it more readable even if it makes the tag feel a little fat.
