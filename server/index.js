@@ -17,11 +17,11 @@ db.once('open', () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
     server.on('connection', wss => {
-        console.log(server.clients.forEach((client) => {
+        server.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(JSON.stringify({message: "hello", from: "server"}))
             }
-        }))
+        })
         
         wss.on('message', message => {
             console.log(wss.clients)
