@@ -14,7 +14,6 @@ function ChatInput(props) {
             
             onSubmit={(e) => {
                 e.preventDefault()
-                console.log(form)
                 update({
                     message: ""
                 })

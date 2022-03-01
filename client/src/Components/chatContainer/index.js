@@ -19,7 +19,9 @@ function ChatContainer() {
             let type = typeof(data)
             if (type === "object") {
                 data.text().then(txt => console.log(txt))
+                return;
             }
+            console.log(data);
         }
     },[socketRef])
 
