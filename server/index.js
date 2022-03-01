@@ -4,7 +4,6 @@ const app = express();
 const WebSocket = require('ws')
 const server = new WebSocket.Server({ port: '8080'})
 
-
 const db = require('./config/connection.js')
 const PORT = process.env.PORT || 3001;
 
@@ -13,10 +12,6 @@ app.use(express.json());
 
 app.use(require('./routes'))
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
-
 db.once('open', () => {
     app.listen(PORT, () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
@@ -24,13 +19,12 @@ db.once('open', () => {
     server.on('connection', wss => {
         console.log(server.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
-                client.send("hello")
+                client.send(JSON.stringify({message: "hello", from: "server"}))
             }
         }))
         
-        // socket.send(JSON.stringify({message: "hello", from: "server"}))
         wss.on('message', message => {
-            console.log('Received: '+message)
+            console.log(JSON.parse(message))
             wss.send(message)
         })
     })
