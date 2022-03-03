@@ -18,10 +18,10 @@ function ChatContainer() {
             // data.text().then(txt => console.log(txt))
             let type = typeof(data)
             if (type === "object") {
-                // data.text().then(txt => console.log(JSON.parse(txt)));
+                data.text().then(txt => console.log(JSON.parse(txt)));
                 return;
             }
-            // console.log(JSON.parse(data));
+            console.log(JSON.parse(data));
         }
     },[socketRef, chatLog])
 

@@ -4,15 +4,13 @@ function MessageRender(props) {
         chatLog
     } = props;
 
-    console.log(chatLog[1].message)
-
     if (chatLog.length === 0) {
         return <h6>Empty Chat</h6>
     }
     return (
 
         <div>
-            {chatLog.map((message, index) => (
+            {chatLog?.map((message, index) => (
                 <div key={index}>
                     <div>
                         <h4>{message.message}</h4>

@@ -24,7 +24,8 @@ db.once('open', () => {
         })
         
         wss.on('message', message => {
-            console.log(server.client)
+            // we need to filter through online users and see if the socket is open for the target
+            // then we will need to either send the message to the them if its open, or skip that and just update the database.
             wss.send(message)
         })
     })
