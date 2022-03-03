@@ -1,6 +1,8 @@
+import MessageRender from "../messageRender";
+
 function ChatFeed(props) {
     const {
-        log,
+        chatLog,
         updateLog
     } = props;
 
@@ -8,7 +10,7 @@ function ChatFeed(props) {
     //honestly unsure if i want to use the message render or just render it all here
     return(
         <section className="h-96">
-            
+            <MessageRender chatLog={chatLog}/>
         </section>
     )
 }

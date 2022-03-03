@@ -1,12 +1,21 @@
-function MessageRender() {
+function MessageRender(props) {
     //logic for rendering each message goes here
-    return(
+    const {
+        chatLog
+    } = props;
+    if (chatLog.length === 0) {
+        return <h6>Empty Chat</h6>
+    }
+    return (
+
         <div>
-            <image></image>
-            <div>
-                <h4>message</h4>
-            </div>
-            <p>sent</p>
+            {chatLog.map((message, index) => {
+                <div key={index}>
+                    <div>
+                        <h4>{message}</h4>
+                    </div>
+                </div>
+            })}
         </div>
     )
 }

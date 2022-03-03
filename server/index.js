@@ -24,7 +24,7 @@ db.once('open', () => {
         })
         
         wss.on('message', message => {
-            console.log(wss.clients)
+            console.log(server.client)
             wss.send(message)
         })
     })
