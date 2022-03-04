@@ -13,6 +13,8 @@ function MessageRender(props) {
         <div>
             {chatLog?.map((message, index) => (
                 <div key={index}>
+                    <img></img>
+                    <p>{message.from}</p>
                     <div>
                         <h4>{message.message}</h4>
                     </div>

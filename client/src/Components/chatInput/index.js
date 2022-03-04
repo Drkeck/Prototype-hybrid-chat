@@ -12,15 +12,16 @@ function ChatInput(props) {
             
             onSubmit={(e) => {
                 e.preventDefault()
-                update({
-                    message: ""
-                })
                 // For now its just a log so we know the message is being captured properly
-                sendMessage(form)
+                sendMessage(form)                
+                update({
+                    message: "",
+                    from: "you"
+                })
             }}
             >
             <input className="w-10/12 m-2 shadow-inner rounded-2xl resize-none px-2 border-none" value={form.message} onChange={(e) => update({
-                message: e.target.value
+                message: e.target.value, from: "you"
             })}/>
             <button className="rounded-full bg-purple w-2/12 m-2 text-white hover:text-black hover:bg-white">send</button>
         </form>

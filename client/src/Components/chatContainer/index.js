@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 
 function ChatContainer() {
     
-    const [form, updateForm] = useState({ message: "" });
+    const [form, updateForm] = useState({ message: "", from: "you" });
     const [chatLog, updateLog] = useState([])
 
     // we need to be able to call the websocket for sending messages without refreshing connections
