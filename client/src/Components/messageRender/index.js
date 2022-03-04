@@ -10,8 +10,14 @@ function MessageRender(props) {
     }
 
     function timestamp() {
-        const times = Date.now();
-        console.log(times)
+        const times = new Date;
+        console.log(times.getHours(), times.getMinutes());
+        if (times.getHours() > 12) {
+            var newHours = times.getHours() /2
+            var newMinutes = times.getMinutes()
+            console.log(newHours, newMinutes)
+        }
+
     }
 
     return (
