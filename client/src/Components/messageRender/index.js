@@ -4,11 +4,12 @@ function MessageRender(props) {
         chatLog
     } = props;
 
+        // no one likes a blank chat.
     if (chatLog.length === 0) {
-        return <h6>Empty Chat</h6>
+        return <h6>Start Messaging Now</h6>
     }
-    return (
 
+    return (
         <div>
             {chatLog?.map((message, index) => (
                 <div key={index}>

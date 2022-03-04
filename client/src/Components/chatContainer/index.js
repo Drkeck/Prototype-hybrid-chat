@@ -8,22 +8,24 @@ function ChatContainer() {
     const [form, updateForm] = useState({ message: "" });
     const [chatLog, updateLog] = useState([])
 
+    // we need to be able to call the websocket for sending messages without refreshing connections
     const socketRef = useRef();
 
     useEffect(() => {
         socketRef.current = new WebSocket('ws://localhost:8080');
 
         socketRef.current.onmessage = ({data}) => {
-            // const newData = JSON.parse(data)
-            // data.text().then(txt => console.log(txt))
+            // check the type of data
             let type = typeof(data)
             if (type === "object") {
+                // this is how we parse object data from the server.
                 data.text().then(txt => console.log(JSON.parse(txt)));
                 return;
             }
+            // otherwise if not an object it should be just stringified json
             console.log(JSON.parse(data));
         }
-    },[socketRef, chatLog])
+    },[socketRef])
 
     function sendMessage(info) {
         socketRef.current.send(JSON.stringify(info))
