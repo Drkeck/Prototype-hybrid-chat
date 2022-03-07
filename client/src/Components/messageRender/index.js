@@ -10,14 +10,20 @@ function MessageRender(props) {
     }
 
     function timestamp() {
-        const times = new Date;
-        console.log(times.getHours(), times.getMinutes());
-        if (times.getHours() > 12) {
-            var newHours = times.getHours() /2
-            var newMinutes = times.getMinutes()
-            console.log(newHours, newMinutes)
+        const times = new Date();
+        let night = false
+        var minutes = times.getMinutes()
+        var hours = times.getHours()
+        if (hours > 12) {
+            night = true
+            hours = hours - 12
         }
-
+        hours.toString()
+        minutes.toString()
+        if (night) {
+            return `${hours}:${minutes} Pm`
+        }
+        return `${hours}:${minutes} Am`
     }
 
     return (
@@ -26,7 +32,7 @@ function MessageRender(props) {
                 <div key={index}>
                     <div className="text-left mx-5 flex flex-col my-2">
                         <div className=" flex flex-row">
-                            <img src="https://via.placeholder.com/50" className="m-0" />
+                            <img src="https://via.placeholder.com/50" className="m-0" alt="User's profile"/>
                             <p className="mx-4">
                                 <b>{message.from}</b>
                             </p>
