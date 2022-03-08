@@ -13,20 +13,29 @@ app.use(express.json());
 app.use(require('./routes'))
 
 db.once('open', () => {
+
     app.listen(PORT, () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
+
+    var id = 0
+    var lookup = {}
+
     server.on('connection', wss => {
+
         server.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
+                wss.id = id++
+                lookup[wss.id] = wss
                 client.send(JSON.stringify({message: "hello", from: "server"}))
             }
-        })
+        });
         
         wss.on('message', message => {
-            // we need to filter through online users and see if the socket is open for the target
+            // we need to filter through online users and see if the socket is open for the target.
             // then we will need to either send the message to the them if its open, or skip that and just update the database.
+            console.log(lookup[0].id);
             wss.send(message);
-        })
+        });
     })
 });
