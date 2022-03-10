@@ -23,9 +23,13 @@ db.once('open', () => {
     var lookup = {}
         server.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
+                // set clients id
                 wss.id = id
+                // itterate on id
                 id++
+                // apply lookup to the wss
                 lookup[wss.id] = wss
+
                 client.send(JSON.stringify({message: "hello", from: "server"}))
             }
         });
@@ -34,7 +38,7 @@ db.once('open', () => {
             // we need to filter through online users and see if the socket is open for the target.
             // then we will need to either send the message to the them if its open, or skip that and just update the database.
             console.log(lookup[0].id);
-            wss.send(message);
+            wss.send(message)
         });
     })
 });
