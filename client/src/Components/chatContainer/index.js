@@ -12,7 +12,11 @@ function ChatContainer() {
     const socketRef = useRef();
 
     useEffect(() => {
-        socketRef.current = new WebSocket('ws://localhost:8080');
+        socketRef.current = new WebSocket('ws://192.168.1.229:8080');
+
+        socketRef.current.onopen = (data) => {
+            console.log(data)
+        }
 
         socketRef.current.onmessage = ({data}) => {
             // check the type of data

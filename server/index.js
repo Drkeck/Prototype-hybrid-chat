@@ -18,14 +18,13 @@ db.once('open', () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
 
+    server.on('connection', wss => {
     var id = 0
     var lookup = {}
-
-    server.on('connection', wss => {
-
         server.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
-                wss.id = id++
+                wss.id = id
+                id++
                 lookup[wss.id] = wss
                 client.send(JSON.stringify({message: "hello", from: "server"}))
             }
