@@ -19,6 +19,9 @@ db.once('open', () => {
     });
 
     server.on('connection', ws => {
+        // will have to go through clients or id's and check if the user is online
+        // but we need a reliable way of saving the id's that relate to our internal data
+        // so that users actually send messages to eachother and not to the void
         server.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(JSON.stringify({ message: "hello", from: "server" }))
