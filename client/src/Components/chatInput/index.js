@@ -13,7 +13,8 @@ function ChatInput(props) {
             onSubmit={(e) => {
                 e.preventDefault()
                 // For now its just a log so we know the message is being captured properly
-                sendMessage(form)                
+                sendMessage(form)
+                // i need to add a time stamp here for when the message is saved so it doesn't rerender the timestamp as current.                
                 update({
                     message: "",
                     from: "you"
