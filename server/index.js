@@ -17,23 +17,27 @@ db.once('open', () => {
     app.listen(PORT, () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
+    
     let id = 0
     let users = []
     server.on('connection', ws => {
+        
         // will have to go through clients or id's and check if the user is online
         // but we need a reliable way of saving the id's that relate to our internal data
         // so that users actually send messages to each other and not to the void
         server.clients.forEach((client) => {
+                
+                
                 ws.id = id;
-                id++;
+                id = id +1;
                 users[ws.id] = ws;
                 users.forEach(user => {
-                    console.log(user.send(JSON.stringify({message: "hello", from: "server"})))
-                    console.log(WebSocket.OPEN)
+                    user.send(JSON.stringify({message: "hello", from: "server"}))
+                    console.log(user.id)
                 })
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({ message: "hello", from: "server" }))
-            }
+            // if (client.readyState === WebSocket.OPEN) {
+            //     client.send(JSON.stringify({ message: "hello", from: "server" }))
+            // }
         });
 
         ws.on('message', message => {
@@ -41,11 +45,13 @@ db.once('open', () => {
             // then we will need to either send the message to the them if its open, or skip that and just update the database.
             try {
             const data = JSON.parse(message)
-            ws.send(message)
+            // ws.send(message)
             users.forEach( user => {
-                
-                if (!user.id === ws.id) {
+                if (user.id != ws.id) {
+                    console.log("send to user")
                     user.send(message)
+                } else {
+                    console.log("dont send to the same user")
                 }
             })
             } catch(e) {

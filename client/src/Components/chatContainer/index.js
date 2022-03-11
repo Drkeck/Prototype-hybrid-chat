@@ -23,7 +23,11 @@ function ChatContainer() {
             let type = typeof(data)
             if (type === "object") {
                 // this is how we parse object data from the server.
-                data.text().then(txt => console.log(JSON.parse(txt)));
+                data.text().then(txt => {
+                    let newMessage = JSON.parse(txt)
+                    console.log(newMessage);
+                    updateLog([...chatLog, newMessage]);
+            });
                 return;
             }
             // otherwise if not an object it should be just stringified json
