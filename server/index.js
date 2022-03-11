@@ -17,12 +17,20 @@ db.once('open', () => {
     app.listen(PORT, () => {
         console.log(`Backend Server running on ${PORT}! https://localhost:${PORT}`);
     });
-
+    let id = 0
+    let users = []
     server.on('connection', ws => {
         // will have to go through clients or id's and check if the user is online
         // but we need a reliable way of saving the id's that relate to our internal data
-        // so that users actually send messages to eachother and not to the void
+        // so that users actually send messages to each other and not to the void
         server.clients.forEach((client) => {
+                ws.id = id;
+                id++;
+                users[ws.id] = ws;
+                users.forEach(user => {
+                    console.log(user.send(JSON.stringify({message: "hello", from: "server"})))
+                    console.log(WebSocket.OPEN)
+                })
             if (client.readyState === WebSocket.OPEN) {
                 client.send(JSON.stringify({ message: "hello", from: "server" }))
             }
@@ -34,6 +42,12 @@ db.once('open', () => {
             try {
             const data = JSON.parse(message)
             ws.send(message)
+            users.forEach( user => {
+                
+                if (!user.id === ws.id) {
+                    user.send(message)
+                }
+            })
             } catch(e) {
                 console.log(`something went wrong: ${e.message}`)
             }
