@@ -25,15 +25,19 @@ function ChatContainer() {
                 // this is how we parse object data from the server.
                 data.text().then(txt => {
                     let newMessage = JSON.parse(txt)
-                    console.log(newMessage);
-                    updateLog([...chatLog, newMessage]);
-            });
+                    updatemessagelog(newMessage)
+                });
                 return;
             }
             // otherwise if not an object it should be just stringified json
             console.log(JSON.parse(data));
         }
     },[socketRef])
+
+    function updatemessagelog(data) {
+        console.log(data)
+        updateLog(prevLog => ([...prevLog, data]))
+    }
 
     function sendMessage(info) {
         socketRef.current.send(JSON.stringify(info))
