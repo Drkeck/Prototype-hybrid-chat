@@ -9,23 +9,6 @@ function MessageRender(props) {
         return <h6>Start Messaging Now</h6>
     }
 
-    function timestamp() {
-        const times = new Date();
-        let night = false
-        var minutes = times.getMinutes()
-        var hours = times.getHours()
-        if (hours > 12) {
-            night = true
-            hours = hours - 12
-        }
-        hours.toString()
-        minutes.toString()
-        if (night) {
-            return `${hours}:${minutes} Pm`
-        }
-        return `${hours}:${minutes} Am`
-    }
-
     return (
         <div>
             {chatLog?.map((message, index) => (
@@ -36,7 +19,7 @@ function MessageRender(props) {
                             <p className="mx-4">
                                 <b>{message.from}</b>
                             </p>
-                            <p>{timestamp()}</p>
+                            <p>{message.timestamp}</p>
                         </div>
                         <div className="ml-16">
                             <h4>{message.message}</h4>
